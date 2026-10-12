@@ -66,6 +66,7 @@ else
     echo "  skip update-path tests (no build/omni.fwsc: run ./build.sh)"
 fi
 run host-build sh host/build_host.sh
+command -v node >/dev/null 2>&1 && run web-installer node web/test_web.mjs   # fm1ota.js / fm1pkg.js against a simulated device
 if command -v emcc >/dev/null 2>&1; then
     run emu sh -c "sh web/emu/build.sh >/dev/null && node tests/host/emu_test.mjs build/emu/omni.wasm"
 fi
