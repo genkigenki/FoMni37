@@ -1,11 +1,11 @@
 # FoMni37
 
-**FoMni, the Omnichord-style chord harp, on the M-VAVE SMK-37 Pro.**
+**FoMni, the Omnichord-style chord harp, on the M-VAVE SMK-37 (SMK-37 Pro, Elite or MKE-P37).**
 
 FoMni37 is a port of [FoMni](https://github.com/charlesvestal/fm1-fomni) by **Charles Vestal**, a chord harp
-firmware for the M-VAVE FM-1 inspired by the Suzuki Omnichord, to the M-VAVE SMK-37 Pro keyboard. Both devices
+firmware for the M-VAVE FM-1 inspired by the Suzuki Omnichord, to the M-VAVE SMK-37 keyboard. Both devices
 use the same JieLi AC791N chip, boot chain and update loader; only the panel wiring differs. FoMni37 adds the
-SMK-37 Pro board support (keys, pads, faders, wheels, knobs, display, LEDs, flash map, update path) and maps
+SMK-37 board support (keys, pads, faders, wheels, knobs, display, LEDs, flash map, update path) and maps
 FoMni onto the bigger panel: the 16 pads become the strum plate, the 37-key keybed holds the chord buttons.
 
 FoMni's own README, with how the instrument works, its pages and its MIDI, is
@@ -13,7 +13,7 @@ FoMni's own README, with how the instrument works, its pages and its MIDI, is
 
 > **Status: experimental.** Tested on an SMK-37 Pro. Read [Safety](#safety) before you install it.
 
-## Playing it on the SMK-37 Pro
+## Playing it on the SMK-37
 
 Every FM-1 control keeps its FoMni function under the SMK's printed name, so FoMni's manual applies. The SMK's
 extra controls add to that.
@@ -60,7 +60,7 @@ light is on in this layout.
 
 ### Buttons
 
-| SMK-37 Pro | FoMni (FM-1 name) | Does |
+| SMK-37 | FoMni (FM-1 name) | Does |
 |---|---|---|
 | PATCH | HOME | Play page |
 | SEQ | SEQ | Rhythm page |
@@ -81,7 +81,7 @@ light is on in this layout.
 
 ### Knobs, faders, wheels
 
-| SMK-37 Pro | Does |
+| SMK-37 | Does |
 |---|---|
 | K1 | master volume (the FM-1's MASTER pot, as a virtual pot) |
 | K2 | SELECT: tempo |
@@ -100,7 +100,7 @@ calibrate themselves. The pitch bend and vibrato are not sent as MIDI.
 
 | Combo | Does |
 |---|---|
-| OCTAVE− + OCTAVE+ held while powering on | HARDWARE CALIBRATION: re-teach which button and knob is which. It asks for the FM-1 names: use the tables above (e.g. "ENV" = CHORD, "HOME" = PATCH, "KNOB 1" = K5). The defaults already match the SMK-37 Pro. |
+| OCTAVE− + OCTAVE+ held while powering on | HARDWARE CALIBRATION: re-teach which button and knob is which. It asks for the FM-1 names: use the tables above (e.g. "ENV" = CHORD, "HOME" = PATCH, "KNOB 1" = K5). The defaults already match the SMK-37. |
 | OCTAVE− + OCTAVE+ held 5 s | the chip's update mode (UBOOT), for flash backups and recovery |
 | two failed starts in a row | SAFE MODE: no sound, USB on for a reinstall; SEQ PLAY tries again |
 
@@ -131,7 +131,7 @@ Host tests (after an FM-1 build; `AC79_SDK` set for the package and update-path 
 AC79_SDK=~/fw-AC79_AIoT_SDK tests/run_tests.sh
 ```
 
-They include the SMK-37 Pro flash map and store owner, the SMK package layout, the update staging and the
+They include the SMK-37 flash map and store owner, the SMK package layout, the update staging and the
 update loader's windows (which must never touch the protected ranges), and the instrument as the SMK build
 compiles it. On Linux with glibc the simulator build of upstream FoMni needs `CC="cc -D_GNU_SOURCE"` (its
 `-std=c99` hides `clock_gettime`; upstream builds on macOS).
@@ -142,7 +142,7 @@ firmware's 12 MHz, see [Open points](#open-points)).
 ## Install
 
 1. Read [Safety](#safety) and back up the flash.
-2. Connect the SMK-37 Pro over USB, close every other program that uses its MIDI port, and run FoMni's installer
+2. Connect the SMK-37 over USB, close every other program that uses its MIDI port, and run FoMni's installer
    (Python 3 with `mido` and `python-rtmidi`):
 
    ```sh
@@ -151,14 +151,14 @@ firmware's 12 MHz, see [Open points](#open-points)).
 
    It finds the keyboard's MIDI port (the stock firmware's, or FoMni37's "FoMni SMK-37"), checks the model,
    asks the running firmware to start the update loader and writes the package; the keyboard restarts and the
-   installed identity is checked. FoMni's web installer is not set up for the SMK-37 Pro.
+   installed identity is checked. FoMni's web installer is not set up for the SMK-37.
 3. Updating FoMni37 later works the same way.
 
-**On the first start** FoMni37 takes over the store area of the flash it shares with other SMK-37 Pro ports
+**On the first start** FoMni37 takes over the store area of the flash it shares with other SMK-37 ports
 (0x9D000–0xAEFFF): whatever another firmware, or the stock firmware, kept there is cleared, and the area is
 tagged as FoMni's. FoMni's own project and panel settings live there.
 
-**Roll back to the stock firmware** with M-VAVE's own updater and the official SMK-37 Pro firmware package.
+**Roll back to the stock firmware** with M-VAVE's own updater and the official firmware package for your model.
 FoMni37 answers the update protocol as the stock firmware does and writes the stock update record name
 (`ota-SMK-37 Pro_016`), so the official tools should see the keyboard as usual (not yet tried with FoMni37; if
 the updater does not find it, use UBOOT and your backup). FoMni's command-line installer cannot read the official SMK package (a different container layout), so
@@ -200,7 +200,7 @@ where the app area can be rewritten with a JieLi UBOOT tool.
 
 | Branch | What |
 |---|---|
-| `main` | FoMni (upstream `main` at 405ef41) + the SMK-37 Pro port, everything behind `BOARD_SMK37` |
+| `main` | FoMni (upstream `main` at 405ef41) + the SMK-37 port, everything behind `BOARD_SMK37` |
 
 ## License and credits
 
@@ -214,7 +214,7 @@ Felucca. Where each part comes from, and the third-party licences, are in [LICEN
   [X0X](https://github.com/charlesvestal/fm1-x0x) by Charles Vestal.
 - **Chordian**: Jan125, <https://github.com/Jan125/pb.chordian> (CC0: the rhythms, waves, drum sounds and envelope
   shapes FoMni is made from).
-- **SMK-37 Pro board layer** (input, display and pad LEDs, flash map, update path): genkigenki, from the
+- **SMK-37 board layer** (input, display and pad LEDs, flash map, update path): genkigenki, from the
   `smk37-board` series of [Snoop37](https://github.com/genkigenki/Snoop37) and the hardware notes in
   [fm1-to-smk37](https://github.com/genkigenki/fm1-to-smk37).
 
