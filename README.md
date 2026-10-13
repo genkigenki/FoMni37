@@ -1,10 +1,14 @@
 # FoMni37
 
+> Unofficial SMK-37 build of [FoMni](https://github.com/charlesvestal/fm1-fomni) by **Charles Vestal**. Offered
+> upstream as [charlesvestal/fm1-fomni#2](https://github.com/charlesvestal/fm1-fomni/pull/2); once merged, use the
+> original project and this repo will be archived. All credit to Charles Vestal.
+
 **FoMni, the Omnichord-style chord harp, on the M-VAVE SMK-37 (SMK-37 Pro, Elite or MKE-P37).**
 
-FoMni37 is a port of [FoMni](https://github.com/charlesvestal/fm1-fomni) by **Charles Vestal**, a chord harp
-firmware for the M-VAVE FM-1 inspired by the Suzuki Omnichord, to the M-VAVE SMK-37 keyboard. Both devices
-use the same JieLi AC791N chip, boot chain and update loader; only the panel wiring differs. FoMni37 adds the
+This is [FoMni](https://github.com/charlesvestal/fm1-fomni) by **Charles Vestal**, a chord harp
+firmware for the M-VAVE FM-1 inspired by the Suzuki Omnichord, built for the M-VAVE SMK-37 keyboard. Both devices
+use the same JieLi AC791N chip, boot chain and update loader; only the panel wiring differs. This build adds the
 SMK-37 board support (keys, pads, faders, wheels, knobs, display, LEDs, flash map, update path) and maps
 FoMni onto the bigger panel: the 16 pads become the strum plate, the 37-key keybed holds the chord buttons.
 
